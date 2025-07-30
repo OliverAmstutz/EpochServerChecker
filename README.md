@@ -1,6 +1,7 @@
 ﻿# Project Epoch Server Monitor
 
-This Python script monitors the status of the **Project Epoch** server and sends real-time updates to a Discord channel using webhooks.
+This Python script monitors the status of the **Project Epoch** server and sends real-time updates to a Discord channel
+using webhooks.
 
 ## 🚀 Features
 
@@ -9,7 +10,7 @@ This Python script monitors the status of the **Project Epoch** server and sends
 - Easy setup and deployment.
 - Secrets handled via `.env` file.
 
-![img.png](assets/DiscordOutputExample.png)
+![img.png](https://raw.githubusercontent.com/OliverAmstutz/EpochServerChecker/main/assets/DiscordOutputExample.png)
 
 ---
 
@@ -26,14 +27,14 @@ This Python script monitors the status of the **Project Epoch** server and sends
    ```bash
    git clone https://github.com/your-user/project-epoch-monitor.git
    cd project-epoch-monitor
-   
+
 2. **Install dependencies**
    ```bash
    pip install -r requirements.txt
-   
+
 3. **setup your discord webhook**
 
-    See this link: [Discord Webhooks](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks)
+   See this link: [Discord Webhooks](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks)
 
 4. **Update your DISCORD_WEBHOOK_URL in the .env file**
     ```text
@@ -47,7 +48,7 @@ This Python script monitors the status of the **Project Epoch** server and sends
     ├── .env                 # Contains the Discord webhook URL (not committed)
     ├── requirements.txt     # Python dependencies
     └── README.md            # This file
-   
+
 5. **Run the script**
     ```bash
     python main.py
