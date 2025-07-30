@@ -10,7 +10,7 @@ using webhooks.
 - Easy setup and deployment.
 - Secrets handled via `.env` file.
 
-![img.png](https://raw.githubusercontent.com/OliverAmstutz/EpochServerChecker/main/assets/DiscordOutputExample.png)
+![screenshot.png](assets/DiscordOutput.png)
 
 ---
 
