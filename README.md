@@ -5,7 +5,7 @@ using webhooks.
 
 ## 🚀 Features
 
-- Periodically checks server status.
+- Periodically checks login server and kazan server status.
 - Sends status updates to Discord via webhook.
 - Easy setup and deployment.
 - Secrets handled via `.env` file.

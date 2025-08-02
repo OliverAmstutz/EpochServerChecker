@@ -4,23 +4,39 @@ from enum import Enum
 from config import load_config
 
 
-def is_server_online(timeout=1):
+class ServerStatus(Enum):
+    BOTH_ONLINE = "✅ Both LOGIN and KAZAN server are ONLINE (Login: {login_minutes} min, Kazan: {kazan_minutes} min)"
+    LOGIN_ONLY = "⚠️ Only LOGIN server is ONLINE (Login: {login_minutes} min)"
+    KAZAN_ONLY = "⚠️ Only KAZAN server is ONLINE (Kazan: {kazan_minutes} min)"
+    BOTH_OFFLINE = "❌ Both LOGIN and KAZAN server are OFFLINE"
+
+    def format_message(self, login_minutes, kazan_minutes):
+        return self.value.format(login_minutes=login_minutes, kazan_minutes=kazan_minutes)
+
+
+def get_combined_server_status():
     config = load_config()
-    host = config['URL']
-    port = config['PORT']
+    login_host = config['LOGIN_URL']
+    login_port = config['LOGIN_PORT']
+    kazan_host = config['KAZAN_URL']
+    kazan_port = config['KAZAN_PORT']
+
+    login_online = _is_server_online(login_host, login_port)
+    kazan_online = _is_server_online(kazan_host, kazan_port)
+
+    if login_online and kazan_online:
+        return ServerStatus.BOTH_ONLINE
+    elif login_online:
+        return ServerStatus.LOGIN_ONLY
+    elif kazan_online:
+        return ServerStatus.KAZAN_ONLY
+    else:
+        return ServerStatus.BOTH_OFFLINE
+
+
+def _is_server_online(host, port, timeout=1):
     try:
         with socket.create_connection((host, port), timeout=timeout):
-            return True, ServerStatus.ONLINE
-    except OSError as e:
-        return False, ServerStatus.OFFLINE
-
-class ServerStatus(Enum):
-    ONLINE = ("✅ Server is ONLINE since {minutes} min", 0)
-    OFFLINE = ("❌ Server is OFFLINE since {minutes} min", 0)
-
-    def format_message(self, minutes):
-        return self.value.format(minutes=minutes)
-
-    def __init__(self, message, minutes):
-        self.message = message
-        self.minutes = minutes
+            return True
+    except OSError:
+        return False
