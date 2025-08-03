@@ -16,9 +16,9 @@ class ServerStatus(Enum):
 
 def get_combined_server_status():
     config = load_config()
-    login_host = config['LOGIN_URL']
+    login_host = config['LOGIN_IP']
     login_port = config['LOGIN_PORT']
-    kazan_host = config['KAZAN_URL']
+    kazan_host = config['KAZAN_IP']
     kazan_port = config['KAZAN_PORT']
 
     login_online = _is_server_online(login_host, login_port)

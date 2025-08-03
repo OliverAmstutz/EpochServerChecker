@@ -7,8 +7,8 @@ def load_config():
     load_dotenv(override=True)
 
     discord_webhook_url = os.getenv('DISCORD_WEBHOOK_URL')
-    login_url = os.getenv('LOGIN_URL')
-    kazan_url = os.getenv('KAZAN_URL')
+    login_ip = os.getenv('LOGIN_IP')
+    kazan_ip = os.getenv('KAZAN_IP')
     login_port = os.getenv('LOGIN_PORT')
     kazan_port = os.getenv('KAZAN_PORT')
     scheduler_interval_seconds = os.getenv('SCHEDULER_INTERVAL_SECONDS')
@@ -16,13 +16,13 @@ def load_config():
     if not discord_webhook_url:
         raise ValueError("Missing DISCORD_WEBHOOK_URL in .env or environment")
 
-    if not login_url:
+    if not login_ip:
         raise ValueError("Missing login URL in .env or environment")
 
     if not login_port:
         raise ValueError("Missing login PORT in .env or environment")
 
-    if not kazan_url:
+    if not kazan_ip:
         raise ValueError("Missing Kazan URL in .env or environment")
 
     if not kazan_port:
@@ -36,8 +36,8 @@ def load_config():
 
     return {
         'DISCORD_WEBHOOK_URL': discord_webhook_url,
-        'LOGIN_URL': login_url,
-        'KAZAN_URL': kazan_url,
+        'LOGIN_IP': login_ip,
+        'KAZAN_IP': kazan_ip,
         'LOGIN_PORT': login_port,
         'KAZAN_PORT': kazan_port,
         'SCHEDULER_INTERVAL_SECONDS': scheduler_interval_seconds
